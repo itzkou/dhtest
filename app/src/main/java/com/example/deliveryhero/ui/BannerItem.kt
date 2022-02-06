@@ -28,9 +28,6 @@ class BannerItem @JvmOverloads constructor(
     private val EXPAND_TEXT_LINES = 400
 
 
-
-
-
     init {
         init(attrs)
     }
@@ -59,7 +56,6 @@ class BannerItem @JvmOverloads constructor(
                 )
             )
         }
-
         if (bannerState) {
             binding.root.setBackgroundColor(Color.parseColor(LIGHT_COLOR))
             binding.tvText.setTextColor(Color.parseColor(DARK_COLOR))
@@ -71,11 +67,11 @@ class BannerItem @JvmOverloads constructor(
         }
 
         initAnimations(binding.tvText, binding.tvCta, bannerAsset)
-        toggleText(binding.tvText, binding.tvCta,bannerAsset)
+        toggleText(binding.tvText, binding.tvCta, bannerAsset)
 
     }
 
-    private fun toggleText(tvText: TextView, tvCta: TextView,bannerAsset: Int?) {
+    private fun toggleText(tvText: TextView, tvCta: TextView, bannerAsset: Int?) {
         var isExpanded: Boolean
 
         tvText.post {
@@ -86,7 +82,12 @@ class BannerItem @JvmOverloads constructor(
                     tvText.maxLines = COLLAPSE_TEXT_LINES
                     tvCta.text = context.getString(R.string.show_more)
                     bannerAsset?.let {
-                       binding.imAsset.startAnimation(AnimationUtils.loadAnimation(context, R.anim.move_asset_expanded))
+                        binding.imAsset.startAnimation(
+                            AnimationUtils.loadAnimation(
+                                context,
+                                R.anim.move_asset_expanded
+                            )
+                        )
                     }
 
 
@@ -122,8 +123,6 @@ class BannerItem @JvmOverloads constructor(
 
 
     }
-
-
 
 
 }

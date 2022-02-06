@@ -32,13 +32,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:minHeight="56dp"
-            app:asset="@drawable/panda_deal"
+            app:asset="@drawable/panda_info"
             app:cta="@string/show_more"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/banner1"
-            app:state="true"
-            app:text="@string/long_text" />
+            app:state="false"
+            app:text="@string/short_text" />
 
         <com.example.deliveryhero.ui.BannerItem
             android:id="@+id/banner3"
@@ -46,12 +46,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:minHeight="56dp"
-            app:asset="@drawable/panda_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/banner2"
             app:state="false"
-            app:text="@string/long_text" />
+            app:text="@string/short_text" />
 
         <com.example.deliveryhero.ui.BannerItem
             android:id="@+id/banner4"
@@ -59,11 +58,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:minHeight="56dp"
-            app:asset="@drawable/panda_deal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/banner3"
+            app:state="false"
+            app:text="@string/long_text" />
+        <com.example.deliveryhero.ui.BannerItem
+            android:id="@+id/banner5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="56dp"
+            app:asset="@drawable/panda_deal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/banner4"
             app:state="true"
-            app:text="@string/short_text" />
+            app:text="@string/long_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

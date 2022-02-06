@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun applyLayoutTransition() {
+    private fun applyLayoutTransition() {  //this function adds a transition animation for text expansion
         val transition = LayoutTransition()
         transition.setDuration(300)
         transition.enableTransitionType(LayoutTransition.CHANGING)
