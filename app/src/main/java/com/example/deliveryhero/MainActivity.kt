@@ -1,9 +1,8 @@
 package com.example.deliveryhero
 
 import android.animation.LayoutTransition
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.deliveryhero.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         transition.setDuration(300)
         transition.enableTransitionType(LayoutTransition.CHANGING)
         binding.constraintLayout.layoutTransition = transition
+        
 
 
     }
