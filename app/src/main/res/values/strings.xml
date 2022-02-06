@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">deliveryhero</string>
+    <string name="long_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.ipiscing ifiylfuyfulyfuf yfff f f ofy fy fy ufyufeipiscing eipiscing eipiscing eipiscing.</string>
+    <string name="short_text">Lorem ipsum dolor sit amet.</string>
+    <string name="show_more">Show more</string>
+    <string name="show_less">Show less</string>
+
+</resources>
