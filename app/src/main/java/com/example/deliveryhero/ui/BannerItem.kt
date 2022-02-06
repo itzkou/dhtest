@@ -97,7 +97,7 @@ class BannerItem @JvmOverloads constructor(
 
 
                 } else {
-                    tvText.maxLines = Int.MAX_VALUE
+                    tvText.maxLines = 400
                     tvCta.text = context.getString(R.string.show_less)
                 }
                 isCollapsed = !isCollapsed
