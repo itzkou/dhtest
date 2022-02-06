@@ -6,13 +6,14 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.view.animation.AnimationSet
-import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.deliveryhero.R
 import com.example.deliveryhero.databinding.BannerBinding
+
+import android.animation.ObjectAnimator
+import android.view.animation.*
 
 
 class BannerItem @JvmOverloads constructor(
@@ -35,7 +36,7 @@ class BannerItem @JvmOverloads constructor(
         val styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.BannerItem)
         try {
             setupUi(styledAttrs)
-            collapseText(binding.tvText, binding.tvCta)
+            toggleText(binding.tvText, binding.tvCta)
 
         } finally {
             styledAttrs.recycle()
@@ -44,11 +45,9 @@ class BannerItem @JvmOverloads constructor(
 
     private fun setupUi(styledAttrs: TypedArray) {
         val bannerText = styledAttrs.getString(R.styleable.BannerItem_text)
-        val bannerCta = styledAttrs.getString(R.styleable.BannerItem_cta)
         val bannerAsset = styledAttrs.getResourceId(R.styleable.BannerItem_asset, 0)
         val bannerState = styledAttrs.getBoolean(R.styleable.BannerItem_state, false)
         binding.tvText.text = bannerText
-        binding.tvCta.text = bannerCta
         if (bannerAsset != 0) {
             binding.imAsset.setImageDrawable(
                 AppCompatResources.getDrawable(
@@ -71,18 +70,22 @@ class BannerItem @JvmOverloads constructor(
         animateViews(binding.tvText, binding.tvCta, bannerAsset)
     }
 
-    private fun collapseText(tvText: TextView, tvCta: TextView) {
+    private fun toggleText(tvText: TextView, tvCta: TextView) {
         var isCollapsed: Boolean
         tvText.post {
+
             isCollapsed = tvText.lineCount > 2
             tvCta.visibility = if (isCollapsed) View.VISIBLE else View.GONE
             tvCta.setOnClickListener {
                 if (!isCollapsed) {
                     tvText.maxLines = 40
                     tvCta.text = context.getString(R.string.show_less)
+                    expand(tvText)
+
                 } else {
                     tvText.maxLines = 3
                     tvCta.text = context.getString(R.string.show_more)
+                    collapse(tvText)
 
                 }
                 isCollapsed = !isCollapsed
@@ -92,8 +95,16 @@ class BannerItem @JvmOverloads constructor(
 
     }
 
+    private fun collapse(tvText: TextView) {
+        TODO("Not yet implemented")
+    }
+
+    private fun expand(tvText: TextView) {
+        TODO("Not yet implemented")
+    }
+
     private fun animateViews(tvText: TextView, tvCta: TextView, bannerAsset: Int?) {
-        val animScale = AnimationUtils.loadAnimation(context, R.anim.scale)
+        val animScale = AnimationUtils.loadAnimation(context, R.anim.scale_down)
         val animAlpha = AnimationUtils.loadAnimation(context, R.anim.alpha)
         val animMoveUpText = AnimationUtils.loadAnimation(context, R.anim.move_up_text)
         val animMoveUpAsset = AnimationUtils.loadAnimation(context, R.anim.move_up_asset)
@@ -110,4 +121,7 @@ class BannerItem @JvmOverloads constructor(
 
 
     }
+
+
+
 }

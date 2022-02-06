@@ -1,20 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <com.example.deliveryhero.ui.BannerItem
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="56dp"
-        app:asset="@drawable/panda_info"
-        app:cta="@string/show_more"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:state="false"
-        app:text="@string/long_text" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        tools:context=".MainActivity">
+
+        <com.example.deliveryhero.ui.BannerItem
+            android:id="@+id/banner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="56dp"
+            app:asset="@drawable/panda_info"
+            app:cta="@string/show_more"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:state="false"
+            app:text="@string/long_text" />
+
+        <com.example.deliveryhero.ui.BannerItem
+            android:id="@+id/banner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="56dp"
+            app:asset="@drawable/panda_deal"
+            app:cta="@string/show_more"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/banner1"
+            app:state="true"
+            app:text="@string/long_text" />
+
+        <com.example.deliveryhero.ui.BannerItem
+            android:id="@+id/banner3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="56dp"
+            app:asset="@drawable/panda_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/banner2"
+            app:state="false"
+            app:text="@string/long_text" />
+
+        <com.example.deliveryhero.ui.BannerItem
+            android:id="@+id/banner4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minHeight="56dp"
+            app:asset="@drawable/panda_deal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/banner3"
+            app:state="true"
+            app:text="@string/short_text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
