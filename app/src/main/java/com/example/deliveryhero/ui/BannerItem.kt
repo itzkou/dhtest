@@ -4,16 +4,20 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.AnimationSet
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.deliveryhero.R
 import com.example.deliveryhero.databinding.BannerBinding
+import android.animation.LayoutTransition
 
-import android.animation.ObjectAnimator
-import android.view.animation.*
+
+
 
 
 class BannerItem @JvmOverloads constructor(
@@ -23,8 +27,18 @@ class BannerItem @JvmOverloads constructor(
 ) :
     ConstraintLayout(context, attrs, defStyleAttr) {
     private val binding = BannerBinding.inflate(LayoutInflater.from(context), this)
-    private val darkColor = "#333333"
-    private val lightColor = "#EBEBEB"
+    private val DARK_COLOR = "#333333"
+    private val LIGHT_COLOR = "#EBEBEB"
+    private val MAX_LINES_COLLAPSED = 3
+    private val INITIAL_IS_COLLAPSED = true
+
+    private val IDLE_ANIMATION_STATE = 1
+    private val EXPANDING_ANIMATION_STATE = 2
+    private val COLLAPSING_ANIMATION_STATE = 3
+
+    private val mCurrentAnimationState = IDLE_ANIMATION_STATE
+
+    private val isCollapsed = INITIAL_IS_COLLAPSED
 
 
     init {
@@ -58,11 +72,11 @@ class BannerItem @JvmOverloads constructor(
         }
 
         if (bannerState) {
-            binding.root.setBackgroundColor(Color.parseColor(lightColor))
-            binding.tvText.setTextColor(Color.parseColor(darkColor))
-            binding.tvCta.setTextColor(Color.parseColor(darkColor))
+            binding.root.setBackgroundColor(Color.parseColor(LIGHT_COLOR))
+            binding.tvText.setTextColor(Color.parseColor(DARK_COLOR))
+            binding.tvCta.setTextColor(Color.parseColor(DARK_COLOR))
         } else {
-            binding.root.setBackgroundColor(Color.parseColor(darkColor))
+            binding.root.setBackgroundColor(Color.parseColor(DARK_COLOR))
             binding.tvText.setTextColor(Color.WHITE)
             binding.tvCta.setTextColor(Color.WHITE)
         }
@@ -72,36 +86,29 @@ class BannerItem @JvmOverloads constructor(
 
     private fun toggleText(tvText: TextView, tvCta: TextView) {
         var isCollapsed: Boolean
-        tvText.post {
 
+        tvText.post {
             isCollapsed = tvText.lineCount > 2
             tvCta.visibility = if (isCollapsed) View.VISIBLE else View.GONE
             tvCta.setOnClickListener {
                 if (!isCollapsed) {
-                    tvText.maxLines = 40
-                    tvCta.text = context.getString(R.string.show_less)
-                    expand(tvText)
-
-                } else {
                     tvText.maxLines = 3
                     tvCta.text = context.getString(R.string.show_more)
-                    collapse(tvText)
 
+
+                } else {
+                    tvText.maxLines = Int.MAX_VALUE
+                    tvCta.text = context.getString(R.string.show_less)
                 }
                 isCollapsed = !isCollapsed
+
             }
+
         }
 
 
     }
 
-    private fun collapse(tvText: TextView) {
-        TODO("Not yet implemented")
-    }
-
-    private fun expand(tvText: TextView) {
-        TODO("Not yet implemented")
-    }
 
     private fun animateViews(tvText: TextView, tvCta: TextView, bannerAsset: Int?) {
         val animScale = AnimationUtils.loadAnimation(context, R.anim.scale_down)
@@ -121,6 +128,7 @@ class BannerItem @JvmOverloads constructor(
 
 
     }
+
 
 
 
